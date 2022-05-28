@@ -3,16 +3,24 @@ import React from 'react';
 import { StyleSheet, Text, View, ActivityIndicator, Button, Image } from 'react-native';
 
 class App extends React.Component {
-  render() {
-    const animating = true;
+  state = {
+    isAnimating: true,
+  }
 
+  onPressHandler = () => {
+    this.setState({
+      isAnimating: !this.state.isAnimating,
+    })
+  }
+
+  render() {
     return (
       <View style={styles.container}>
-        <ActivityIndicator animating={animating} />
-        <ActivityIndicator animating={animating} size="large" />
-        <ActivityIndicator animating={animating} size={124} />
+        <ActivityIndicator animating={this.state.isAnimating} />
+        <ActivityIndicator animating={this.state.isAnimating} size="large" />
+        <ActivityIndicator animating={this.state.isAnimating} size={124} />
         <Text>Open up App.js to start working on dsadasdyour app! adasdasdasdasd</Text>
-        <Button title="To jest przycisk" onPress={() => console.log('wcisniety!')} disabled={true} />
+        <Button title="To jest przycisk" onPress={this.onPressHandler} />
         <StatusBar style="auto" />
         <Image 
           fadeDuration={3000}
