@@ -1,15 +1,28 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, ActivityIndicator, Button, Image } from 'react-native';
+import { StyleSheet, Text, View, ActivityIndicator, Button, Image, Modal } from 'react-native';
 
 class App extends React.Component {
   state = {
     isAnimating: true,
+    isModalVisible: false,
   }
 
   onPressHandler = () => {
     this.setState({
       isAnimating: !this.state.isAnimating,
+    })
+  }
+
+  onModalPressHandler = () => {
+    this.setState({
+      isModalVisible: true,
+    });
+  }
+
+  onModalClosePressHandler = () => {
+    this.setState({
+      isModalVisible: false,
     })
   }
 
@@ -26,6 +39,14 @@ class App extends React.Component {
           fadeDuration={3000}
           source={require('./default.png')} 
           />
+        <Button title="Otwórz" style={styles.button} onPress={this.onModalPressHandler} />
+        
+        <Modal visible={this.state.isModalVisible}>
+          <View>
+            <Text>To jest text modala</Text>
+            <Button title="Zamknij" onPress={this.onModalClosePressHandler}/>
+          </View>
+        </Modal>
       </View>
     );
   }
@@ -39,6 +60,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  button: {
+    border: '1px solid',
+    borderColor: '#ccddee',
   },
   image: {
     width: '100px',
