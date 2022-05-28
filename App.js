@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, ActivityIndicator, Button } from 'react-native';
+import { StyleSheet, Text, View, ActivityIndicator, Button, Image } from 'react-native';
 
 function App() {
   const animating = true;
@@ -10,12 +10,13 @@ function App() {
       <ActivityIndicator animating={animating} />
       <ActivityIndicator animating={animating} size="large" />
       <ActivityIndicator animating={animating} size={124} />
-      <ActivityIndicator animating={animating} style={[{}, {
-        transform: [{ scaleY: 5 }, { scaleX: 5 }]
-      }]} color="#ff0000"/>
       <Text>Open up App.js to start working on dsadasdyour app! adasdasdasdasd</Text>
       <Button title="To jest przycisk" onPress={() => console.log('wcisniety!')} disabled={true} />
       <StatusBar style="auto" />
+      <Image 
+        fadeDuration={3000}
+        source={require('./default.png')} 
+        />
     </View>
   );
 }
@@ -29,4 +30,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  image: {
+    width: '100px',
+    height: '100px',
+  }
 });
