@@ -1,15 +1,20 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
 
-export default function App() {
+function App() {
+  const animating = false;
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <ActivityIndicator animating={animating} hidesWhenStopped={false} />
+      <Text>Open up App.js to start working on dsadasdyour app! adasdasdasdasd</Text>
       <StatusBar style="auto" />
     </View>
   );
 }
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {
