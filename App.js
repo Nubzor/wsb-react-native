@@ -1,17 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, ActivityIndicator, Button, Image, Modal } from 'react-native';
+import { StyleSheet, View, Button, Image, Modal, TouchableHighlight } from 'react-native';
 
 class App extends React.Component {
   state = {
-    isAnimating: true,
     isModalVisible: false,
-  }
-
-  onPressHandler = () => {
-    this.setState({
-      isAnimating: !this.state.isAnimating,
-    })
   }
 
   onModalPressHandler = () => {
@@ -29,17 +22,15 @@ class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <ActivityIndicator animating={this.state.isAnimating} />
-        <ActivityIndicator animating={this.state.isAnimating} size="large" />
-        <ActivityIndicator animating={this.state.isAnimating} size={124} />
-        <Text>Open up App.js to start working on dsadasdyour app! adasdasdasdasd</Text>
-        <Button title="To jest przycisk" onPress={this.onPressHandler} />
+        {/* <ActivityIndicator animating={this.state.isAnimating} size="large" /> */}
         <StatusBar style="auto" />
-        <Image 
-          fadeDuration={3000}
-          source={require('./default.png')} 
-          />
-        <Button title="Otwórz" style={styles.button} onPress={this.onModalPressHandler} />
+
+        <TouchableHighlight onPress={this.onModalPressHandler}>
+          <Image 
+            fadeDuration={3000}
+            source={require('./default.png')} 
+            />
+        </TouchableHighlight>
         
         <Modal visible={this.state.isModalVisible} transparent={true}>
           <View style={styles.modalContainer}>
