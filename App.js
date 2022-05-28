@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
+import reactDom from 'react-dom';
 import { StyleSheet, View, Button, Image, Modal, Text, TouchableHighlight } from 'react-native';
 
 const images = [
@@ -72,35 +73,38 @@ class App extends React.Component {
     return (
       <View style={styles.container}>
         <StatusBar style="auto" />
+        <Text style={[{fontSize: 18}]}>Galeria</Text>
+        <View style={styles.imageWrapper}>
 
-        {images.map(image => {
-          return (<TouchableHighlight key={image.url} onPress={() => this.onModalPressHandler(true, image)} style={styles.imageContainer}>
-            <Image
-              resizeMode="contain"
-              source={{
-                uri: image.url,
-                width: 100,
-                height: 100,
-              }} 
-            />
-          </TouchableHighlight>)
-        })}
-        
-        <Modal visible={this.state.isModalVisible} transparent={true}>
-          <View style={styles.modalContainer}>
-            <Image 
-              fadeDuration={3000}
-              resizeMode="contain"
-              source={{
-                uri: this.state.modalImageUrl,
-                width: 300,
-                height: 300,
-              }} 
-            />
-            <Text>{this.state.modalDescription}</Text>
-            <Button title="Zamknij" onPress={() => this.onModalPressHandler(false)}/>
-          </View>
-        </Modal>
+          {images.map(image => {
+            return (<TouchableHighlight key={image.url} onPress={() => this.onModalPressHandler(true, image)} style={styles.imageContainer}>
+              <Image
+                resizeMode="contain"
+                source={{
+                  uri: image.url,
+                  width: 100,
+                  height: 100,
+                }} 
+              />
+            </TouchableHighlight>)
+          })}
+          
+          <Modal visible={this.state.isModalVisible} transparent={true}>
+            <View style={styles.modalContainer}>
+              <Image 
+                fadeDuration={3000}
+                resizeMode="contain"
+                source={{
+                  uri: this.state.modalImageUrl,
+                  width: 300,
+                  height: 300,
+                }} 
+              />
+              <Text>{this.state.modalDescription}</Text>
+              <Button title="Zamknij" onPress={() => this.onModalPressHandler(false)}/>
+            </View>
+          </Modal>
+        </View>
       </View>
     );
   }
@@ -111,12 +115,18 @@ export default App;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: 20,
+    backgroundColor: '#fff',
+  },
+  imageWrapper: {
+    flex: 1,
     backgroundColor: '#bbb',
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    paddingTop: 30,
   },
   imageContainer: {
     backgroundColor: '#fff',
